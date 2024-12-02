@@ -20,6 +20,11 @@ app.engine('hbs', engine({
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
+  },
+  helpers: {
+    incrementIndex: function (index) {
+      return index + 1;
+    }
   }
 }))
 app.set('views', path.join(__dirname, 'views'));

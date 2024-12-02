@@ -1,0 +1,42 @@
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col text-end">
+                <a href="/admin/add-product" class="btn btn-success">
+                    <i class="fas fa-plus-circle"></i> Add Product
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm bg-white">
+                <thead class="table-success text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each product}}
+                    <tr class="align-middle text-center">
+                        <th scope="row">{{incrementIndex @index}}</th>
+                        <td>{{this.title}}</td>
+                        <td>Mobile Phone</td>
+                        <td>{{this.description}}</td>
+                        <td>${{this.price}}</td>
+                        <td>
+                            <img src="{{this.productImage}}" 
+                                 alt="{{this.title}}" 
+                                 class="img-thumbnail" 
+                                 style="width: 50px; height: 50px;">
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
