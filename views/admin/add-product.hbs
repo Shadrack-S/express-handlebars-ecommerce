@@ -1,0 +1,71 @@
+<div class="container">
+    <form action="/admin/add-product" method="post" class="row g-3 p-4 border rounded shadow-sm"
+        style="background-color: #e9f7e9; border-color: #b5dcb3;" enctype="multipart/form-data">
+        <!-- Form Heading -->
+        <div class="col-12 text-center">
+            <h3 class="mb-4 text-success">Add New Product</h3>
+        </div>
+
+        <!-- Product Title -->
+        <div class="col-md-6">
+            <label for="productTitle" class="form-label fw-bold">Product Title</label>
+            <input type="text" class="form-control" name="productTitle" id="productTitle"
+                placeholder="Enter product title" style="border-color: #b5dcb3;" />
+        </div>
+
+        <!-- Product Description -->
+        <div class="col-md-6">
+            <label for="productDescription" class="form-label fw-bold">Description</label>
+            <input type="text" class="form-control" name="productDescription" id="productDescription"
+                placeholder="Enter product description" style="border-color: #b5dcb3;" />
+        </div>
+
+        <!-- Product Image -->
+        <div class="col-12">
+            <label for="productImage" class="form-label fw-bold">Product Image</label>
+            <input type="file" class="form-control" name="productImage" id="productImage"
+                style="border-color: #b5dcb3;" />
+        </div>
+
+        <!-- Product Price -->
+        <div class="col-md-6">
+            <label for="productPrice" class="form-label fw-bold">Price</label>
+            <input type="number" class="form-control" name="productPrice" id="productPrice"
+                placeholder="Enter product price" style="border-color: #b5dcb3;" />
+        </div>
+
+        <!-- Product Currency -->
+        <div class="col-md-6">
+            <label for="productCurrency" class="form-label fw-bold">Currency</label>
+            <select id="productCurrency" name="productCurrency" class="form-select" style="border-color: #b5dcb3;">
+                <option selected disabled>Choose currency</option>
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+            </select>
+        </div>
+
+        <!-- Product Category -->
+        <div class="col-md-6">
+            <label for="productCategory" class="form-label fw-bold">Category</label>
+            <input type="text" class="form-control" name="productCategory" id="productCategory"
+                placeholder="Enter product category" style="border-color: #b5dcb3;" />
+        </div>
+
+        <!-- Featured Product -->
+        <div class="col-md-6">
+            <label for="featureCheck" class="form-label fw-bold">Feature Product</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="featureProduct" id="featureCheck"
+                    style="border-color: #b5dcb3;" />
+                <label class="form-check-label" for="featureCheck">Mark as Featured</label>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-success px-5 py-2">Add Product</button>
+        </div>
+    </form>
+</div>
