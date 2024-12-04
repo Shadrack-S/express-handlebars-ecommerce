@@ -8,6 +8,7 @@ const hbs = require('express-handlebars')
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 const fileUpload = require('express-fileupload')
+const db = require('./config/connection')
 
 var app = express();
 const engine = hbs.engine
@@ -38,6 +39,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Mongodb Connection
+db.connect((err) => {
+  if (err) {
+    console.error('Database connection failed:', err);
+    return;
+  }
+
+  console.log('Connected to the database successfully!');
+});
 
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
