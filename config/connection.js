@@ -1,24 +1,30 @@
 const { MongoClient } = require('mongodb');
-require('dotenv').config()
+require('dotenv').config();
 
-const url = process.env.DB_URL; // Ensure DB_URL is set in your environment variables
-const client = new MongoClient(url,);
+// Ensure DB_URL is set in your environment variables
+const url = process.env.DB_URL; 
+const client = new MongoClient(url);
 
 const dbName = "eCommerce";
 
 const state = {
-    db: null,
+    db: null, // Holds the database instance
 };
 
-const connect = async (done) => {
+const connect = async () => {
+    if (state.db) {
+        console.log("Database is already connected.");
+        return state.db;
+    }
+
     try {
         await client.connect();
-        console.log("Connected successfully to server");
-        state.db = client.db(dbName); // Store the database instance in the state object
-        done(null); // Call the done callback with no error
-    } catch (err) {
-        console.error("Error connecting to MongoDB:", err);
-        done(err); // Pass the error to the callback
+        state.db = client.db(dbName); // Save the database instance
+        console.log("Database connected successfully.");
+        return state.db;
+    } catch (error) {
+        console.error("Error connecting to the database:", error);
+        throw error;
     }
 };
 
@@ -29,7 +35,4 @@ const getDb = () => {
     return state.db;
 };
 
-module.exports = {
-    connect,
-    getDb,
-};
+module.exports = { connect, getDb };
