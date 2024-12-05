@@ -5,11 +5,10 @@ module.exports = {
         try {
             const db = await getDb();  
             const result = await db.collection('product').insertOne(products); 
+            console.log("result:",result);
             // Call the callback with success
-            callback(true);
-            console.log('Product added successfully:', result);
+            callback(result.insertedId.toString());
         } catch (error) {
-            console.error('Error adding product:', error);
             callback(false);  
         }
     }
