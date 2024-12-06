@@ -23,15 +23,13 @@
                     {{#each product}}
                     <tr class="align-middle text-center">
                         <th scope="row">{{incrementIndex @index}}</th>
-                        <td>{{this.title}}</td>
-                        <td>Mobile Phone</td>
-                        <td>{{this.description}}</td>
-                        <td>${{this.price}}</td>
+                        <td>{{this.productTitle}}</td>
+                        <td>{{this.productCategory}}</td>
+                        <td>{{this.productDescription}}</td>
+                        <td> {{this.productPrice}}</td>
                         <td>
-                            <img src="{{this.productImage}}" 
-                                 alt="{{this.title}}" 
-                                 class="img-thumbnail" 
-                                 style="width: 50px; height: 50px;">
+                            <img src="/product-images/{{this._id}}.jpg" alt="{{this.productTitle}}"
+                                class="img-thumbnail" style="width: 50px; height: 50px;">
                         </td>
                     </tr>
                     {{/each}}
