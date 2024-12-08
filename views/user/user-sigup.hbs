@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-lg-4 col-md-6 col-sm-8 col-11">
+      <div class="card shadow border-0">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4 text-primary">Create an Account</h2>
+          <form action="/signup" method="post" class="needs-validation" novalidate>
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" name="FullName" placeholder="Enter your full name" required>
+              <div class="invalid-feedback">
+                Full Name is required.
+              </div>
+            </div>
+            <!-- Email Address -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email" required>
+              <div class="invalid-feedback">
+                Please enter a valid email address.
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="Password" placeholder="Create a password" required>
+              <div class="invalid-feedback">
+                Password is required.
+              </div>
+            </div>
+            <!-- Confirm Password -->
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" placeholder="Confirm your password" required>
+              <div class="invalid-feedback">
+                Please confirm your password.
+              </div>
+            </div>
+            <!-- Already Have an Account -->
+            <div class="text-center mb-3">
+              <a href="/login" class="text-primary small">Already have an account? Login</a>
+            </div>
+            <!-- Submit Button -->
+            <div>
+              <button type="submit" class="btn btn-primary w-100">Create Account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
