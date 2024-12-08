@@ -1,7 +1,8 @@
 const express = require('express');
 const productHelpers = require('../helpers/product.helpers');
 const router = express.Router();
-const userHelper = require('../helpers/user-helpers')
+const userHelper = require('../helpers/user-helpers');
+const { response } = require('../app');
 
 
 /* GET home page. */
@@ -20,7 +21,9 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res)=>{
-  userHelper.doSignup()
+  userHelper.doSignup(req.body).then((response)=>{
+    console.log(response);
+  })
 })
 
 module.exports = router;
