@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('express-handlebars')
+const session = require('express-session')
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
@@ -48,8 +49,14 @@ db.connect((err) => {
   }
 
   console.log('Connected to the database successfully!');
-});
+})
 
+app.use(session({
+  secret:process.env.SCRET_KEY,
+  cookie:{
+    maxAge:24 * 60 * 60 * 1000
+  }
+}))
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
 
