@@ -53,6 +53,8 @@ db.connect((err) => {
 
 app.use(session({
   secret:process.env.SCRET_KEY,
+  resave:false,
+  saveUninitialized:true,
   cookie:{
     maxAge:24 * 60 * 60 * 1000
   }

@@ -22,7 +22,9 @@ router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/')
   } else {
-    res.render('user/user-login')
+
+    res.render('user/user-login', { "loginErr": req.session.loginErr })
+    req.session.loginErr = false
   }
 })
 
@@ -37,20 +39,33 @@ router.post('/signup', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  userHelper.doLogin(req.body).then((response) => {
-    if (response.status) {
-      req.session.loggedIn = true
-      req.session.user = response.user
-      res.redirect('/')
-    } else {
-      res.redirect('/login')
-    }
-  })
-})
+  userHelper
+    .doLogin(req.body)
+    .then((response) => {
+      if (response.status) {
+        req.session.loggedIn = true;
+        req.session.user = response.user;
+        res.redirect('/');
+      } else {
+        req.session.loginErr = true; // Fix: Use req.session
+        res.redirect('/login');
+      }
+    })
+    .catch((err) => {
+      console.error('Login Error:', err);
+      res.status(500).send('An error occurred during login. Please try again.');
+    });
+});
+
 
 router.get('/logout', (req, res) => {
   req.session.destroy()
   res.redirect('/')
+})
+
+// Cart Page
+router.get('/cart',(req, res)=>{
+  res.render('user/cart-user')
 })
 
 module.exports = router;
