@@ -3,6 +3,7 @@ const productHelpers = require('../helpers/product.helpers');
 const router = express.Router();
 const userHelper = require('../helpers/user-helpers');
 const { response } = require('../app');
+const { verifyLogin } = require('./user.utils');
 
 
 /* GET home page. */
@@ -64,7 +65,7 @@ router.get('/logout', (req, res) => {
 })
 
 // Cart Page
-router.get('/cart',(req, res)=>{
+router.get('/cart', verifyLogin, (req, res) => {
   res.render('user/cart-user')
 })
 
