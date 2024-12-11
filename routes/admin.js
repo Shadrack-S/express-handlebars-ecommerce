@@ -40,7 +40,13 @@ router.get('/edit-product/:productId', async (req, res) => {
     console.error('Error fetching product:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
+router.get('/delete-product/:productId', async (req, res) => {
+  const productId = req.params.productId
+  
+res.render("")
+})
 
 
 module.exports = router;
