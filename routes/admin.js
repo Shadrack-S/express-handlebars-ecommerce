@@ -28,4 +28,19 @@ router.post('/add-product', (req, res) => {
   })
 })
 
+router.get('/edit-product/:productId', async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const product = await productHelper.getAProduct(productId)
+    if (!product) {
+      return res.status(404).send('Product not found');
+    }
+    res.render('admin/edit-product', { product, admin: true });
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 module.exports = router;
