@@ -43,9 +43,15 @@ router.get('/edit-product/:productId', async (req, res) => {
 })
 
 router.get('/delete-product/:productId', async (req, res) => {
-  const productId = req.params.productId
-  
-res.render("")
+  try {
+    const productId = req.params.productId
+    const product = await productHelper.deleteAProduct(productId)
+    if(product){
+      res.redirect('/admin')
+    }
+  } catch {
+    res.status(500).send('Internal Server Error');
+  }
 })
 
 
