@@ -40,7 +40,19 @@ router.get('/edit-product/:productId', async (req, res) => {
     console.error('Error fetching product:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
+router.get('/delete-product/:productId', async (req, res) => {
+  try {
+    const productId = req.params.productId
+    const product = await productHelper.deleteAProduct(productId)
+    if(product){
+      res.redirect('/admin')
+    }
+  } catch {
+    res.status(500).send('Internal Server Error');
+  }
+})
 
 
 module.exports = router;

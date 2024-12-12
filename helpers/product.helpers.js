@@ -21,11 +21,11 @@ module.exports = {
             throw error; // Throw the error to be handled by the calling function
         }
     },
-    getAProduct : async (productId) => {
+    getAProduct: async (productId) => {
         try {
             const db = await getDb(); // Ensure you have a working `getDb` function
             const product = await db.collection(collection.PRODUCT_COLLECTION).findOne({ _id: new ObjectId(productId) });
-    
+
             if (!product) {
                 console.log('Product not found');
                 return null;
@@ -34,6 +34,16 @@ module.exports = {
         } catch (error) {
             throw error;
         }
-    }
-    
+    },
+    deleteAProduct: async (productId) => {
+        try {
+            const db = await getDb();
+            const result = await db.collection(collection.PRODUCT_COLLECTION).findOneAndDelete({ _id: new ObjectId(productId) })
+            return result
+        } catch (error) {
+            throw error;
+        }
+    },
+
+
 }
