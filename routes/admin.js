@@ -54,5 +54,8 @@ router.get('/delete-product/:productId', async (req, res) => {
   }
 })
 
-
+router.post('/edit-product' ,async(req,res)=>{
+  console.log("req",req.body)
+})
+ 
 module.exports = router;
