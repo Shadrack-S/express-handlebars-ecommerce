@@ -46,7 +46,7 @@ router.get('/delete-product/:productId', async (req, res) => {
   try {
     const productId = req.params.productId
     const product = await productHelper.deleteAProduct(productId)
-    if(product){
+    if (product) {
       res.redirect('/admin')
     }
   } catch {
@@ -54,8 +54,29 @@ router.get('/delete-product/:productId', async (req, res) => {
   }
 })
 
-router.post('/edit-product' ,async(req,res)=>{
-  console.log("req",req.body)
-})
- 
+router.post('/edit-product/:productId', async (req, res) => {
+  try {
+    req.body.id = req.params.productId
+    const updatedProduct = await productHelper.editProduct(req.body);
+    if (updatedProduct) {
+      // Successful update
+      res.redirect('/admin')
+      
+    } else {
+      // Product not found or update failed
+      res.status(404).json({
+        success: false,
+        message: 'Failed to update product or product not found'
+      });
+    }
+  } catch (error) {
+    console.error('Error updating product:', error);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while updating the product',
+      error: error.message
+    });
+  }
+});
+
 module.exports = router;

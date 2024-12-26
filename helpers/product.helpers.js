@@ -44,6 +44,21 @@ module.exports = {
             throw error;
         }
     },
+    editProduct: async (body) => {
+        try {
+            const db = await getDb();
+            const result = await db
+                .collection(collection.PRODUCT_COLLECTION)
+                .findOneAndUpdate(
+                    { _id: new ObjectId(body.id) }, // Match by ObjectId
+                    { $set: body },                 // Update fields
+                    { returnDocument: 'after' }     // Return the updated document
+                );
+            return result;                    // Return the updated product
+        } catch (error) {
+            throw error;
+        }
+    },
 
 
 }
