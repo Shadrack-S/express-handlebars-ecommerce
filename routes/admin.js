@@ -61,7 +61,11 @@ router.post('/edit-product/:productId', async (req, res) => {
     if (updatedProduct) {
       // Successful update
       res.redirect('/admin')
-      
+      if (req.files.productImage) {
+        let productImage = req.files.productImage
+        productImage.mv('./public/product-images/' + req.body.id + '.jpg')
+      }
+
     } else {
       // Product not found or update failed
       res.status(404).json({
